@@ -42,11 +42,23 @@ void loop() {
       case 'B':
         car_back(&motor1, &motor2, &motor3, &motor4);
         break;
+      case 'G':
+        car_forward_left(&motor1, &motor2, &motor3, &motor4);
+        break;
+      case 'I':
+        car_forward_right(&motor1, &motor2, &motor3, &motor4);
+        break;
+      case 'H':
+        car_back_left(&motor1, &motor2, &motor3, &motor4);
+        break;
+      case 'J':
+        car_back_right(&motor1, &motor2, &motor3, &motor4);
+        break;
       case 'L':
-        car_left(&motor1, &motor2, &motor3, &motor4);
+        car_turn_left(&motor1, &motor2, &motor3, &motor4);
         break;
       case 'R':
-        car_right(&motor1, &motor2, &motor3, &motor4);
+        car_turn_right(&motor1, &motor2, &motor3, &motor4);
         break;
     }
   }
