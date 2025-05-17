@@ -18,10 +18,10 @@ The Shop Rover is a mobile robot project designed to facilitate shopping tasks. 
 
 ## Features
 - Remote control via Bluetooth
-- Movement in four directions (forward, backward, left, right)
-- Lighting system with white and red LEDs
-- Ambient light detection via photoresistor
+- Movement in four directions (forward, backward, forward_left, forward_right, backward_left, backward_right, left, right)
+- Lighting system with white LEDs
 - Sound signal for interaction
+- Obstacle detection
 - Rechargeable lithium-ion battery power supply
 
 ## Hardware Components
@@ -31,9 +31,9 @@ The project uses the following components:
 - HC-05 Bluetooth module
 - L293D motor driver
 - INR18650 – 2000mAh Lithium battery
-- White and red LEDs
-- Photoresistor (LDR)
+- White LEDs
 - Buzzer
+- HC-SR04 ultrasonic sensor
 
 For more details about the components, check the [Hardware README](hardware/README.md).
 

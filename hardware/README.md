@@ -75,27 +75,7 @@ This is the list of components required for building The Shop Rover, a four-whee
        <img src="components/white_led.png" alt="White LED" width="150">
      </p>
 
-### 7. **LED Rouges (x2)**
-   - **Description**: Similar to white LEDs but emit red light.
-   - **Function**: Can serve as signaling lights (e.g., rear lights), alarm indicators, or status indicators.
-   - **Role in Project**: Provides visual signaling or indication of the robot's state.
-   - **Connection**: Also requires a series resistor.
-   - **Image**:
-     <p align="center">
-       <img src="components/red_led.png" alt="Red LED" width="150">
-     </p>
-
-### 8. **Photorésistance (LDR)**
-   - **Description**: A light-dependent resistor, a sensor whose electrical resistance changes based on the intensity of incident light. The stronger the light, the lower the resistance.
-   - **Function**: Allows the robot to "see" ambient light levels. This can be used for various applications, such as light tracking, day/night detection, or reacting to changes in illumination.
-   - **Role in Project**: Acts as a light sensor, potentially for detecting environmental conditions.
-   - **Connection**: Needs to be connected in a voltage divider circuit with a fixed resistor to measure the resistance variation with the Arduino.
-   - **Image**:
-     <p align="center">
-       <img src="components/photoresistor.png" alt="Photoresistor" width="150">
-     </p>
-
-### 9. **Klaxon (Buzzer)**
+### 7. **Klaxon (Buzzer)**
    - **Description**: An electromechanical device that produces a sound when electrically powered.
    - **Function**: Allows the robot to emit audible signals to alert shopkeepers of its presence or indicate an action (e.g., "payment" made).
    - **Role in Project**: Provides an auditory signal for interaction in the shopping environment.
@@ -105,6 +85,20 @@ This is the list of components required for building The Shop Rover, a four-whee
        <img src="components/buzzer.png" alt="Buzzer" width="200">
      </p>
 
+### 8. **Capteur à Ultrasons HC-SR04**
+- **Description**: A distance measuring sensor that uses ultrasonic waves to detect obstacles and measure how far away they are.
+- **Function**: Sends out an ultrasonic pulse and listens for its echo to calculate the distance to an object. Ideal for obstacle detection and avoidance.
+- **Role in Project**: Allows the robot to detect obstacles in front of it and make decisions to avoid collisions while navigating.
+- **Specifications**:
+  - Operating Voltage: 5V DC
+  - Measuring Range: 2 cm to 400 cm
+  - Accuracy: ±3 mm
+  - Trigger and Echo pins for communication
+- **Connection**: Typically connects to two digital pins on the Arduino (Trigger and Echo), powered by 5V and GND.
+- **Image**:
+  <p align="center">
+    <img src="components/ultrasonic_sensor_hc-sr04.png" alt="HC-SR04 Ultrasonic Sensor" width="250">
+  </p>
 ---
 
 ### Notes:
