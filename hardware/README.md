@@ -34,17 +34,7 @@ This is the list of components required for building The Shop Rover, a four-whee
        <img src="components/arduino_uno_r3.png" alt="Arduino Uno R3" width="250">
      </p>
 
-### 3. **Module Bluetooth HC-05**
-   - **Description**: A wireless communication module utilizing Bluetooth technology. It allows establishing a wireless serial connection between the Arduino and a smartphone or other Bluetooth-enabled device.
-   - **Function**: Enables the smartphone to send commands to the robot (e.g., move forward, backward, turn) and potentially receive data from the robot (if additional sensors are implemented).
-   - **Role in Project**: Facilitates real-time control of the robot's movements via a mobile application.
-   - **Configuration**: May require initial setup (name, password, communication speed) using AT commands.
-   - **Image**:
-     <p align="center">
-       <img src="components/bluetooth_module_hc-05.png" alt="Bluetooth HC-05 Module" width="200">
-     </p>
-
-### 4. **Driver de Moteur L293D**
+### 3. **Driver de Moteur L293D**
    - **Description**: An integrated circuit (chip) designed to control DC motors. It contains two H-bridges, allowing independent control of the direction and speed of two motors.
    - **Function**: The Arduino cannot directly supply the power needed for the motors. The L293D acts as a power interface, taking low-current control signals from the Arduino and amplifying them to power the motors with the required current and voltage from the battery. It also allows for reversing the motors' rotation direction.
    - **Role in Project**: Controls the direction and speed of the robot's four DC motors based on signals from the Arduino.
@@ -52,6 +42,16 @@ This is the list of components required for building The Shop Rover, a four-whee
    - **Image**:
      <p align="center">
        <img src="components/driver_motor_shield_l293d.png" alt="L293D Motor Driver" width="300">
+     </p>
+
+### 4. **Module Bluetooth HC-05**
+   - **Description**: A wireless communication module utilizing Bluetooth technology. It allows establishing a wireless serial connection between the Arduino and a smartphone or other Bluetooth-enabled device.
+   - **Function**: Enables the smartphone to send commands to the robot (e.g., move forward, backward, turn) and potentially receive data from the robot (if additional sensors are implemented).
+   - **Role in Project**: Facilitates real-time control of the robot's movements via a mobile application.
+   - **Configuration**: May require initial setup (name, password, communication speed) using AT commands.
+   - **Image**:
+     <p align="center">
+       <img src="components/bluetooth_module_hc-05.png" alt="Bluetooth HC-05 Module" width="200">
      </p>
 
 ### 5. **Batterie Lithium INR18650 – 2000mAh**
@@ -65,17 +65,7 @@ This is the list of components required for building The Shop Rover, a four-whee
        <img src="components/inr18650_2000mah_lithium_battery.png" alt="INR18650 Battery" width="250">
      </p>
 
-### 6. **LED Blanches (x2)**
-   - **Description**: Light Emitting Diodes (LEDs) that emit white light when an electric current passes through them.
-   - **Function**: Can be used for robot illumination, indicating operational status, or creating visual effects.
-   - **Role in Project**: Provides visual feedback or lighting for the robot.
-   - **Connection**: Requires a series resistor to limit the current and prevent damage.
-   - **Image**:
-     <p align="center">
-       <img src="components/white_led.png" alt="White LED" width="150">
-     </p>
-
-### 7. **Klaxon (Buzzer)**
+### 6. **Klaxon (Buzzer)**
    - **Description**: An electromechanical device that produces a sound when electrically powered.
    - **Function**: Allows the robot to emit audible signals to alert shopkeepers of its presence or indicate an action (e.g., "payment" made).
    - **Role in Project**: Provides an auditory signal for interaction in the shopping environment.
@@ -85,7 +75,7 @@ This is the list of components required for building The Shop Rover, a four-whee
        <img src="components/buzzer.png" alt="Buzzer" width="200">
      </p>
 
-### 8. **Capteur à Ultrasons HC-SR04**
+### 7. **Capteur à Ultrasons HC-SR04**
 - **Description**: A distance measuring sensor that uses ultrasonic waves to detect obstacles and measure how far away they are.
 - **Function**: Sends out an ultrasonic pulse and listens for its echo to calculate the distance to an object. Ideal for obstacle detection and avoidance.
 - **Role in Project**: Allows the robot to detect obstacles in front of it and make decisions to avoid collisions while navigating.
@@ -99,6 +89,16 @@ This is the list of components required for building The Shop Rover, a four-whee
   <p align="center">
     <img src="components/ultrasonic_sensor_hc-sr04.png" alt="HC-SR04 Ultrasonic Sensor" width="250">
   </p>
+
+### 8. **LED Blanches (x2)**
+   - **Description**: Light Emitting Diodes (LEDs) that emit white light when an electric current passes through them.
+   - **Function**: Can be used for robot illumination, indicating operational status, or creating visual effects.
+   - **Role in Project**: Provides visual feedback or lighting for the robot.
+   - **Connection**: Requires a series resistor to limit the current and prevent damage.
+   - **Image**:
+     <p align="center">
+       <img src="components/white_led.png" alt="White LED" width="150">
+     </p>
 ---
 
 ### Notes:
