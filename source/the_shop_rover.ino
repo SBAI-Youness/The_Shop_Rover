@@ -25,6 +25,7 @@ AF_DCMotor motor4(MOTOR4_ID, MOTOR34_1KHZ);
 SoftwareSerial bluetoothSerial(BLUETOOTH_RX, BLUETOOTH_TX);
 
 char command;
+uint8_t currentSpeed = MAX_SPEED;
 
 void setup() {
   bluetoothSerial.begin(9600);
@@ -35,30 +36,37 @@ void loop() {
     command = bluetoothSerial.read();
     car_stop(&motor1, &motor2, &motor3, &motor4);
 
+    // Speed control commands (0-9)
+    if (command >= '0' && command <= '9') {
+      // Convert ASCII to number and map to speed range
+      currentSpeed = map(command - '0', 0, 9, MIN_SPEED, MAX_SPEED);
+      return;
+    }
+
     switch (command) {
       case 'F':
-        car_forward(&motor1, &motor2, &motor3, &motor4);
+        car_forward(&motor1, &motor2, &motor3, &motor4, currentSpeed);
         break;
       case 'B':
-        car_back(&motor1, &motor2, &motor3, &motor4);
+        car_back(&motor1, &motor2, &motor3, &motor4, currentSpeed);
         break;
       case 'G':
-        car_forward_left(&motor1, &motor2, &motor3, &motor4);
+        car_forward_left(&motor1, &motor2, &motor3, &motor4, currentSpeed);
         break;
       case 'I':
-        car_forward_right(&motor1, &motor2, &motor3, &motor4);
+        car_forward_right(&motor1, &motor2, &motor3, &motor4, currentSpeed);
         break;
       case 'H':
-        car_back_left(&motor1, &motor2, &motor3, &motor4);
+        car_back_left(&motor1, &motor2, &motor3, &motor4, currentSpeed);
         break;
       case 'J':
-        car_back_right(&motor1, &motor2, &motor3, &motor4);
+        car_back_right(&motor1, &motor2, &motor3, &motor4, currentSpeed);
         break;
       case 'L':
-        car_turn_left(&motor1, &motor2, &motor3, &motor4);
+        car_turn_left(&motor1, &motor2, &motor3, &motor4, currentSpeed);
         break;
       case 'R':
-        car_turn_right(&motor1, &motor2, &motor3, &motor4);
+        car_turn_right(&motor1, &motor2, &motor3, &motor4, currentSpeed);
         break;
     }
   }
