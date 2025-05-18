@@ -62,7 +62,7 @@ This is the list of components required for building The Shop Rover, a four-whee
    - **Important Note**: Lithium-ion batteries require specific handling and charging precautions (using a protection circuit and a compatible charger) to prevent risks of overheating, fire, or explosion.
    - **Image**:
      <p align="center">
-       <img src="components/inr18650_2000mah_Lithium_battery.png" alt="INR18650 Battery" width="250">
+       <img src="components/inr18650_2000mah_lithium_battery.png" alt="INR18650 Battery" width="250">
      </p>
 
 ### 6. **LED Blanches (x2)**
