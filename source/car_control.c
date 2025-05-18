@@ -1,5 +1,19 @@
 #include "../include/car_control.h"
 
+float measureDistance() {
+  digitalWrite(TRIG_PIN, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG_PIN, LOW);
+
+  long duration = pulseIn(ECHO_PIN, HIGH, 10000);
+  if (duration == 0) return 999;
+
+  float distance = duration * 0.034 / 2;
+  return distance;
+}
+
 void move_motors(AF_DCMotor *motor1, AF_DCMotor *motor2, AF_DCMotor *motor3, AF_DCMotor *motor4, uint8_t direction, uint8_t speed) {
   motor1->setSpeed(speed);
   motor1->run(direction);

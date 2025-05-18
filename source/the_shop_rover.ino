@@ -26,35 +26,63 @@ SoftwareSerial bluetoothSerial(BLUETOOTH_RX, BLUETOOTH_TX);
 
 char command;
 uint8_t currentSpeed = MAX_SPEED;
+unsigned long lastDistanceCheck = 0;
+const unsigned long DISTANCE_CHECK_INTERVAL = 100;
+float lastDistance = 0;
 
 void setup() {
   bluetoothSerial.begin(9600);
+  
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
+  
+  motor1.setSpeed(0);
+  motor2.setSpeed(0);
+  motor3.setSpeed(0);
+  motor4.setSpeed(0);
 }
 
 void loop() {
+  unsigned long currentMillis = millis();
+  if (currentMillis - lastDistanceCheck >= DISTANCE_CHECK_INTERVAL) {
+    lastDistance = measureDistance();
+    lastDistanceCheck = currentMillis;
+  }
+
   if (bluetoothSerial.available() > 0) {
     command = bluetoothSerial.read();
-    car_stop(&motor1, &motor2, &motor3, &motor4);
-
-    // Speed control commands (0-9)
+    
     if (command >= '0' && command <= '9') {
-      // Convert ASCII to number and map to speed range
       currentSpeed = map(command - '0', 0, 9, MIN_SPEED, MAX_SPEED);
       return;
     }
 
+    bool obstacleDetected = lastDistance < MIN_DISTANCE;
+    
     switch (command) {
       case 'F':
-        car_forward(&motor1, &motor2, &motor3, &motor4, currentSpeed);
+        if (!obstacleDetected) {
+          car_forward(&motor1, &motor2, &motor3, &motor4, currentSpeed);
+        } else {
+          car_stop(&motor1, &motor2, &motor3, &motor4);
+        }
         break;
       case 'B':
         car_back(&motor1, &motor2, &motor3, &motor4, currentSpeed);
         break;
       case 'G':
-        car_forward_left(&motor1, &motor2, &motor3, &motor4, currentSpeed);
+        if (!obstacleDetected) {
+          car_forward_left(&motor1, &motor2, &motor3, &motor4, currentSpeed);
+        } else {
+          car_stop(&motor1, &motor2, &motor3, &motor4);
+        }
         break;
       case 'I':
-        car_forward_right(&motor1, &motor2, &motor3, &motor4, currentSpeed);
+        if (!obstacleDetected) {
+          car_forward_right(&motor1, &motor2, &motor3, &motor4, currentSpeed);
+        } else {
+          car_stop(&motor1, &motor2, &motor3, &motor4);
+        }
         break;
       case 'H':
         car_back_left(&motor1, &motor2, &motor3, &motor4, currentSpeed);
@@ -67,6 +95,9 @@ void loop() {
         break;
       case 'R':
         car_turn_right(&motor1, &motor2, &motor3, &motor4, currentSpeed);
+        break;
+      case 'S':
+        car_stop(&motor1, &motor2, &motor3, &motor4);
         break;
     }
   }
