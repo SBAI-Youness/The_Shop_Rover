@@ -40,24 +40,21 @@ For more details about the components, check the [Hardware README](hardware/READ
 ## Project Structure
 ```
 The_Shop_Rover/
-├── hardware/           # Hardware documentation and schematics
+├── code/              # Arduino source code
+│   └── main.ino
+├── hardware/          # Hardware documentation and schematics
 │   ├── layout/        # Assembly plans
 │   ├── architecture/  # Hardware architecture
 │   ├── schematics/    # Electronic schematics
 │   └── components/    # Component documentation
-├── source/            # Arduino source code
-│   ├── the_shop_rover.ino
-│   └── car_control.c
-├── include/           # Header files
-│   └── car_control.h
-└── docs/             # Additional documentation
+└── docs/              # Additional documentation
 ```
 
 ## Installation
 1. Download and install the Arduino IDE
 2. Install the Adafruit Motor Shield library
 3. Clone this repository
-4. Open `source/the_shop_rover.ino` in the Arduino IDE
+4. Open `code/main.ino` in the Arduino IDE
 5. Upload the code to your Arduino Uno
 
 ## Control Application
