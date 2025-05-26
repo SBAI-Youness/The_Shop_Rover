@@ -29,12 +29,16 @@
 #define ECHO_PIN A0
 #define MIN_DISTANCE 20
 
+#define BUZZER_PIN 12
+#define BUZZER_FREQ 1000
+
 AF_DCMotor motor1(MOTOR1_ID, MOTOR12_1KHZ);
 AF_DCMotor motor2(MOTOR2_ID, MOTOR12_1KHZ);
 AF_DCMotor motor3(MOTOR3_ID, MOTOR34_1KHZ);
 AF_DCMotor motor4(MOTOR4_ID, MOTOR34_1KHZ);
 
 SoftwareSerial bluetoothSerial(BLUETOOTH_RX, BLUETOOTH_TX);
+
 void move_motors(AF_DCMotor *motor1, AF_DCMotor *motor2, AF_DCMotor *motor3, AF_DCMotor *motor4, uint8_t direction, uint8_t speed);
 void car_forward(AF_DCMotor *motor1, AF_DCMotor *motor2, AF_DCMotor *motor3, AF_DCMotor *motor4, uint8_t speed);
 void car_back(AF_DCMotor *motor1, AF_DCMotor *motor2, AF_DCMotor *motor3, AF_DCMotor *motor4, uint8_t speed);
@@ -46,6 +50,8 @@ void car_turn_left(AF_DCMotor *motor1, AF_DCMotor *motor2, AF_DCMotor *motor3, A
 void car_turn_right(AF_DCMotor *motor1, AF_DCMotor *motor2, AF_DCMotor *motor3, AF_DCMotor *motor4, uint8_t speed);
 void car_stop(AF_DCMotor *motor1, AF_DCMotor *motor2, AF_DCMotor *motor3, AF_DCMotor *motor4);
 float measureDistance();
+void buzzer_on();
+void buzzer_off();
 
 char command;
 uint8_t currentSpeed = MAX_SPEED;
@@ -55,10 +61,13 @@ float lastDistance = 0;
 
 void setup() {
   bluetoothSerial.begin(9600);
-  
+
   pinMode(TRIG_PIN, OUTPUT);
   pinMode(ECHO_PIN, INPUT);
-  
+
+  pinMode(BUZZER_PIN, OUTPUT);
+  buzzer_off();
+
   motor1.setSpeed(0);
   motor2.setSpeed(0);
   motor3.setSpeed(0);
@@ -74,14 +83,14 @@ void loop() {
 
   if (bluetoothSerial.available() > 0) {
     command = bluetoothSerial.read();
-    
+
     if (command >= '0' && command <= '9') {
       currentSpeed = map(command - '0', 0, 9, MIN_SPEED, MAX_SPEED);
       return;
     }
 
     bool obstacleDetected = lastDistance < MIN_DISTANCE;
-    
+
     switch (command) {
       case 'F':
         if (!obstacleDetected) {
@@ -122,6 +131,12 @@ void loop() {
       case 'S':
         car_stop(&motor1, &motor2, &motor3, &motor4);
         break;
+      case 'V':
+        buzzer_on();
+        break;
+      case 'v':
+        buzzer_off();
+        break;
     }
   }
 }
@@ -138,6 +153,14 @@ float measureDistance() {
 
   float distance = duration * 0.034 / 2;
   return distance;
+}
+
+void buzzer_on() {
+  tone(BUZZER_PIN, BUZZER_FREQ);
+}
+
+void buzzer_off() {
+  noTone(BUZZER_PIN);
 }
 
 void move_motors(AF_DCMotor *motor1, AF_DCMotor *motor2, AF_DCMotor *motor3, AF_DCMotor *motor4, uint8_t direction, uint8_t speed) {
